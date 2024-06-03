@@ -4,11 +4,13 @@ import { Box, Button, Checkbox, Flex, Input, List, ListItem, Text } from "@chakr
 const TodoList = () => {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
+  const [newTaskDate, setNewTaskDate] = useState("");
 
   const addTask = () => {
-    if (newTask.trim() !== "") {
-      setTasks([...tasks, { text: newTask, completed: false }]);
+    if (newTask.trim() !== "" && newTaskDate.trim() !== "") {
+      setTasks([...tasks, { text: newTask, date: newTaskDate, completed: false }]);
       setNewTask("");
+      setNewTaskDate("");
     }
   };
 
@@ -33,6 +35,12 @@ const TodoList = () => {
           onChange={(e) => setNewTask(e.target.value)}
           mr={2}
         />
+        <Input
+          type="date"
+          value={newTaskDate}
+          onChange={(e) => setNewTaskDate(e.target.value)}
+          mr={2}
+        />
         <Button onClick={addTask} colorScheme="blue">
           Add
         </Button>
@@ -46,7 +54,7 @@ const TodoList = () => {
               mr={2}
             />
             <Text as={task.completed ? "s" : ""} flex="1">
-              {task.text}
+              {task.text} - {task.date}
             </Text>
             <Button size="sm" colorScheme="red" onClick={() => deleteTask(index)}>
               X
