@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Box, Button, Checkbox, Flex, Input, List, ListItem, Text } from "@chakra-ui/react";
-import { CloseIcon } from "@chakra-ui/icons";
 
 const TodoList = () => {
   const [tasks, setTasks] = useState([]);
@@ -50,7 +49,7 @@ const TodoList = () => {
               {task.text}
             </Text>
             <Button size="sm" colorScheme="red" onClick={() => deleteTask(index)}>
-              <CloseIcon />
+              X
             </Button>
           </ListItem>
         ))}
